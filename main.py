@@ -34,7 +34,7 @@ def handle_message_events(event, say):
     elif any(keyword in text for keyword in socials_keywords):
         say("Please share your socials in #networking so it doesn't get lost in the feed.", thread_ts=thread_ts)
     elif any(keyword in text for keyword in support_keywords):
-        say("Check the #ai-automation-support channel for all recordings and program announcements.", thread_ts=thread_ts)
+        say("Check the #ai-automation-support channel for all recordings and program announcements. Here's the help page with the recaps and tips for the program. https://atransformation.slack.com/docs/T019S8YQC3D/F0840G44LKE", thread_ts=thread_ts)
     elif any(keyword in text for keyword in timing_keywords):
         say("Check your email for your workshop start times!", thread_ts=thread_ts)
     else:
