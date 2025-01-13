@@ -14,7 +14,7 @@ if not slack_bot_token or not slack_signing_secret:
 app = App(token=slack_bot_token, signing_secret=slack_signing_secret)
 
 # Channel ID for #networking (replace with the actual channel ID)
-NETWORKING_CHANNEL_ID = "C01F7PHM2RW"  # Replace with the real ID for #networking
+NETWORKING_CHANNEL_ID = "C1234567890"  # Replace with the real ID for #networking
 
 # Respond to specific keywords in a thread
 @app.event("message")
@@ -27,6 +27,7 @@ def handle_message_events(event, say):
     socials_keywords = ["linkedin", "x", "twitter"]
     support_keywords = ["help", "recording", "recordings", "broken", "not working"]
     timing_keywords = ["time", "training start", "class start", "meeting time", "meet"]
+    resources_keywords = ["resources", "code", "notebook", "notebooks"]
 
     # Check if the message contains socials_keywords and is in the networking channel
     if channel_id == NETWORKING_CHANNEL_ID and any(keyword in text for keyword in socials_keywords):
@@ -34,9 +35,14 @@ def handle_message_events(event, say):
     elif any(keyword in text for keyword in socials_keywords):
         say("Please share your socials in #networking so it doesn't get lost in the feed.", thread_ts=thread_ts)
     elif any(keyword in text for keyword in support_keywords):
-        say("Check the #ai-automation-support channel for all recordings and program announcements. Here's the help page with the recaps and tips for the program. https://atransformation.slack.com/docs/T019S8YQC3D/F0840G44LKE", thread_ts=thread_ts)
+        say("Check the #ai-automation-support channel for all recordings and program announcements.", thread_ts=thread_ts)
     elif any(keyword in text for keyword in timing_keywords):
         say("Check your email for your workshop start times!", thread_ts=thread_ts)
+    elif any(keyword in text for keyword in resources_keywords):
+        say(
+            "Looking for resources, code, or notebooks? Check out this GitHub repository: https://github.com/TeneikaAskew/taap",
+            thread_ts=thread_ts
+        )
     else:
         pass  # Do nothing if no keywords match
 
